@@ -2,6 +2,7 @@
 require('../model/database.php');
 require('../model/voters_db.php');
 require('../model/category_db.php');
+require('../model/script_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -106,7 +107,7 @@ if ($action == 'list_voters') {
 // Validate inputs
     if ($name == NULL) {
         $error = "Invalid category name. Check name and try again.";
-        include('view/error.php');
+        include('../errors/error.php');
     } else {
         add_category($name);
         header('Location: .?action=list_categories');
@@ -116,6 +117,30 @@ if ($action == 'list_voters') {
             FILTER_VALIDATE_INT);
     delete_category($category_id);
     header('Location: .?action=list_categories');
+    }
+
+// List ascript id and messages
+    if ($action == 'list_script') {
+    $scripts = get_scripts();
+    include('script_list.php');
+// Add message
+} else if ($action == 'add_script') {
+    $script_id = filter_input(INPUT_POST, 'script_id',
+            FILTER_VALIDATE_INT); 
+    $message = filter_input(INPUT_POST, 'message');
+    if ($script_id == NULL || $script_id == FALSE || $message == NULL) {
+        $error = "Invalid message. Message must contain text.";
+        include('../errors/error.php');
+    } else {
+        add_script($script_id, $message);
+        header('Location: .?action=list_script');
+   }
+// Delete message    
+} else if ($action == 'delete_script') {
+    $script_id = filter_input(INPUT_POST, 'script_id', 
+            FILTER_VALIDATE_INT);
+    delete_script($script_id);
+    header('Location: .?action=list_script');
     }
 
 ?>

@@ -3,7 +3,8 @@
     <h1>Call: <?php echo $voter['phone']; ?></h1>
     <h2>If there is an answer:</h2>
     <p>Hello <?php echo $voter['firstName']; ?> <?php echo $voter['lastName']; ?>.</p>
-    <p>My name is <?php echo $_SESSION['userName'];?>.</p>
+    <p>My name is <?php echo $_SESSION['userName']; ?>.</p>
+    <p><?php echo get_script_message(1); ?></p>
     <br>
     <h2>Other information:</h2>
     <p>Voter lives in <?php echo $voter['city']; ?>.</p> 

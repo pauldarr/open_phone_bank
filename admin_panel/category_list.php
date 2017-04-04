@@ -1,11 +1,12 @@
 <?php include '../view/header.php'; ?>
 <main>
-
-    <h1>Voter Category List</h1>
+    <div class="category">
+    <h2>Voter status list</h2>
+    <div class="table">
     <table>
         <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
+            <th>Status</th>
+            <th>Delete</th>
         </tr>
         <?php foreach ($categories as $category) : ?>
         <tr>
@@ -18,24 +19,24 @@
                     <input type="submit" value="Delete"/>
                 </form>
             </td>
-            <td><?php echo $category['categoryName']; ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
+    </div>
 
-    <h2>Add Category</h2>
+    <h2>Add status</h2>
     <form id="add_category_form"
           action="index.php" method="post">
         <input type="hidden" name="action" value="add_category" />
 
         <label>Name:</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" pattern="[A-Z]{1}[a-z]{1,30}" title="Format: Status" />
         <input type="submit" value="Add"/>
     </form>
 
     <form method="post" action="../admin_panel/">
         <button type="submit">Return to Admin Panel</button>
     </form>
-
+    </div>   
 </main>
 <?php include '../view/footer.php'; ?>

@@ -49,6 +49,7 @@ if ($action == 'list_voters') {
     $category_id = filter_input(INPUT_POST, 'category_id', 
             FILTER_VALIDATE_INT);
     $categories = get_categories();
+    $message = get_script_message();
     
     if ($voter_id == NULL || $voter_id == FALSE ||
         $category_id == NULL || $category_id == FALSE) {

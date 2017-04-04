@@ -1,31 +1,26 @@
 <?php include '../view/header.php'; ?>
 <main>
     <aside>
-        <!-- display a list of categories -->
-        <h2>Categories</h2>
+        <h2>Status</h2>
         <?php include '../view/category_nav.php'; ?>        
     </aside>
-
     <section>
         <p>Please select a voter to call by selecting call next to a name. You will be taken to a page with a voters number and script for the call.</p>
+        <p>Please submit your name prior to calling voters.</p>
         <form method="post" action=".">
             <label>Your name:</label><br>
             <input type="text" name="userName" value="<?php echo $_SESSION['userName'];?>"/><br>
             <input type="submit" name="Submit_Name" value="Submit" />
         </form>
-        
-        <!-- display a list of voters -->
-        <h2>Voter list: <?php echo $category_name; ?></h2>
+        <div class="table">
         <table>
             <tr>
-                <th>Voter ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>&nbsp;</th>
+                <th>Call</th>
             </tr>
             <?php foreach ($voters as $voter) : ?>
             <tr>
-                <td><?php echo $voter['voterID']; ?></td>
                 <td><?php echo $voter['firstName']; ?></td>
                 <td><?php echo $voter['lastName']; ?></td>
                 <td><form action="." method="post">
@@ -39,7 +34,8 @@
                 </form></td>
             </tr>
             <?php endforeach; ?>
-        </table>       
+        </table>
+        </div>
     </section>
 </main>
 <?php include '../view/footer.php'; ?>

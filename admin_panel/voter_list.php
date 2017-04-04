@@ -1,30 +1,31 @@
 <?php include '../view/header.php'; ?>
 <main>
-    <h1>Voter List</h1>
-
     <aside>
-        <!-- display a list of categories -->
-        <h2>Categories</h2>
-        <?php include '../view/category_nav.php'; ?>        
+        <h2>Status</h2>
+        <?php include '../view/category_nav.php'; ?> 
     </aside>
-
     <section>
-        <!-- display a list of voters -->
-        <h2>Voter list: <?php echo $category_name; ?></h2>
-        <div style="overflow-x:auto;">
+        <h1>Voter List</h1>
+        <div class="table">
         <table>
             <tr>
                 <th>Voter ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
+                <th>Phone Number</th>
+                <th>City</th>
+                <th>Party</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
             <?php foreach ($voters as $voter) : ?>
             <tr>
                 <td><?php echo $voter['voterID']; ?></td>
                 <td><?php echo $voter['firstName']; ?></td>
                 <td><?php echo $voter['lastName']; ?></td>
+                <td><?php echo $voter['phone']; ?></td>
+                <td><?php echo $voter['city']; ?></td>
+                <td><?php echo $voter['party']; ?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
                            value="delete_voter">
@@ -49,7 +50,8 @@
         </div>
         <form method="post" action="?action=show_add_form">
             <button type="submit">Add voter</button>
-            <button type="submit" formaction="?action=list_categories">Add/Delete Category</button>
+            <button type="submit" formaction="?action=list_categories">Add/Delete Status</button>
+            <button type="submit" formaction="?action=list_script">Edit Script</button>
         </form>       
     </section>
 </main>
